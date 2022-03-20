@@ -1,17 +1,16 @@
 using System.Collections.Generic;
 using HarmonyLib;
 
-namespace StockpileStackLimit
+namespace StockpileStackLimit;
+
+internal class EndingTranspiler : ITranspiler
 {
-    internal class EndingTranspiler : ITranspiler
+    public IEnumerable<CodeInstruction> TransMethod(TranspilerFactory factory)
     {
-        public IEnumerable<CodeInstruction> TransMethod(TranspilerFactory factory)
+        var instructions = factory.CodeEnumerator;
+        while (instructions.MoveNext())
         {
-            var instructions = factory.CodeEnumerator;
-            while (instructions.MoveNext())
-            {
-                yield return instructions.Current;
-            }
+            yield return instructions.Current;
         }
     }
 }

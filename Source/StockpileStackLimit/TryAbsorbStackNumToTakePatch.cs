@@ -2,30 +2,29 @@
 using UnityEngine;
 using Verse;
 
-namespace StockpileStackLimit
+namespace StockpileStackLimit;
+
+//[HarmonyPatch(typeof(ThingUtility), "TryAbsorbStackNumToTake")]
+public static class TryAbsorbStackNumToTakePatch
 {
-    //[HarmonyPatch(typeof(ThingUtility), "TryAbsorbStackNumToTake")]
-    public static class TryAbsorbStackNumToTakePatch
+    [HarmonyPriority(Priority.Low)]
+    public static bool Prefix(ref int __result, Thing thing, Thing other, bool respectStackLimit)
     {
-        [HarmonyPriority(Priority.Low)]
-        public static bool Prefix(ref int __result, Thing thing, Thing other, bool respectStackLimit)
+        if (respectStackLimit)
         {
-            if (respectStackLimit)
+            var t = Limits.CalculateStackLimit(thing) - thing.stackCount;
+            if (t < 0)
             {
-                var t = Limits.CalculateStackLimit(thing) - thing.stackCount;
-                if (t < 0)
-                {
-                    t = 0;
-                }
-
-                __result = Mathf.Min(other.stackCount, t);
-            }
-            else
-            {
-                __result = other.stackCount;
+                t = 0;
             }
 
-            return false;
+            __result = Mathf.Min(other.stackCount, t);
         }
+        else
+        {
+            __result = other.stackCount;
+        }
+
+        return false;
     }
 }

@@ -2,70 +2,69 @@ using System;
 using System.Collections.Generic;
 using HarmonyLib;
 
-namespace StockpileStackLimit
+namespace StockpileStackLimit;
+
+internal class SearchTranspiler : ITranspiler
 {
-    internal class SearchTranspiler : ITranspiler
+    private readonly List<CodeInstruction> search;
+
+    public SearchTranspiler(List<CodeInstruction> codes)
     {
-        private readonly List<CodeInstruction> search;
-
-        public SearchTranspiler(List<CodeInstruction> codes)
+        if (codes == null || codes.Count <= 0)
         {
-            if (codes == null || codes.Count <= 0)
-            {
-                throw new Exception();
-            }
-
-            search = codes;
+            throw new Exception();
         }
 
-        public IEnumerable<CodeInstruction> TransMethod(TranspilerFactory factory)
+        search = codes;
+    }
+
+    public IEnumerable<CodeInstruction> TransMethod(TranspilerFactory factory)
+    {
+        var queue = new Queue<CodeInstruction>();
+        var instructions = factory.CodeEnumerator;
+        while (instructions.MoveNext())
         {
-            var queue = new Queue<CodeInstruction>();
-            var instructions = factory.CodeEnumerator;
-            while (instructions.MoveNext())
+            var current = instructions.Current;
+            queue.Enqueue(current);
+            if (queue.Count > search.Count)
             {
-                var current = instructions.Current;
-                queue.Enqueue(current);
-                if (queue.Count > search.Count)
-                {
-                    yield return queue.Dequeue();
-                }
+                yield return queue.Dequeue();
+            }
 
-                if (queue.Count != search.Count)
-                {
-                    continue;
-                }
+            if (queue.Count != search.Count)
+            {
+                continue;
+            }
 
-                var count = 0;
-                foreach (var item in queue)
+            var count = 0;
+            foreach (var item in queue)
+            {
+                if (search[count].IsMatchWith(item))
                 {
-                    if (search[count].IsMatchWith(item))
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    count++;
                 }
-
-                if (count < search.Count)
+                else
                 {
-                    continue;
+                    break;
                 }
+            }
 
-                while (queue.Count > 0)
-                {
-                    yield return queue.Dequeue();
-                }
-
-                yield break;
+            if (count < search.Count)
+            {
+                continue;
             }
 
             while (queue.Count > 0)
             {
                 yield return queue.Dequeue();
             }
+
+            yield break;
+        }
+
+        while (queue.Count > 0)
+        {
+            yield return queue.Dequeue();
         }
     }
 }

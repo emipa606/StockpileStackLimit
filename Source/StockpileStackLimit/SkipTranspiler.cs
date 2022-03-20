@@ -2,32 +2,31 @@ using System;
 using System.Collections.Generic;
 using HarmonyLib;
 
-namespace StockpileStackLimit
+namespace StockpileStackLimit;
+
+internal class SkipTranspiler : ITranspiler
 {
-    internal class SkipTranspiler : ITranspiler
+    private readonly int count;
+
+    public SkipTranspiler(int num)
     {
-        private readonly int count;
-
-        public SkipTranspiler(int num)
+        if (num <= 0)
         {
-            if (num <= 0)
-            {
-                throw new Exception();
-            }
-
-            count = num;
+            throw new Exception();
         }
 
-        public IEnumerable<CodeInstruction> TransMethod(TranspilerFactory factory)
-        {
-            var t = count;
-            var instructions = factory.CodeEnumerator;
-            while (t > 0 && instructions.MoveNext())
-            {
-                t--;
-            }
+        count = num;
+    }
 
-            return null;
+    public IEnumerable<CodeInstruction> TransMethod(TranspilerFactory factory)
+    {
+        var t = count;
+        var instructions = factory.CodeEnumerator;
+        while (t > 0 && instructions.MoveNext())
+        {
+            t--;
         }
+
+        return null;
     }
 }

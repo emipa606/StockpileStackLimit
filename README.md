@@ -1,43 +1,34 @@
 # StockpileStackLimit
 
-![Image](https://i.imgur.com/WAEzk68.png)
+![Image](https://i.imgur.com/buuPQel.png)
 
 Update of sellophanes mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2015532615
 
 - Added LoadAfter-tag for the Pickup and Haul mod
 
-![Image](https://i.imgur.com/7Gzt3Rg.png)
+![Image](https://i.imgur.com/pufA0kM.png)
 
-
-[table]
-    [tr]
-        [td]https://invite.gg/Mlie]![Image](https://i.imgur.com/zdzzBrc.png)
-[/td]
-        [td]https://github.com/emipa606/StockpileStackLimit]![Image](https://i.imgur.com/kTkpTOE.png)
-[/td]
-    [/tr]
-[/table]
 	
-![Image](https://i.imgur.com/NOW7jU1.png)
+![Image](https://i.imgur.com/Z4GOv8H.png)
 
 This is the second iteration of the original mod by ilyaki, modified for better functionality by Darkside, and now updated for 1.1 by myself.
 
 Majority of the credit can go to those two individuals, I just corrected dependencies, and made the necessary .NET updates.
 
-This hasn&apos;t been extensively tested however, it ran with no hiccups in my modded 1.1 so I don&apos;t foresee too many issues occurring. The only caveat to that is while this will work along side LWM&apos;s DeepStorage you should not set stockpile limits for the buildings from that mod.
+This hasn't been extensively tested however, it ran with no hiccups in my modded 1.1 so I don't foresee too many issues occurring. The only caveat to that is while this will work along side LWM's DeepStorage you should not set stockpile limits for the buildings from that mod.
 
-[strike]Additionally, I have not, and will not, test this for 1.0. In theory it should still work but if it doesn&apos;t please just use the 1.0 version that is linked below.[/strike]
+[strike]Additionally, I have not, and will not, test this for 1.0. In theory it should still work but if it doesn't please just use the 1.0 version that is linked below.[/strike]
 
-The below links point to Darkside&apos;s modified version, and the original version of the mod to provide credit where it&apos;s due.
+The below links point to Darkside's modified version, and the original version of the mod to provide credit where it's due.
 
-Darkside&apos;s
+Darkside's
 https://steamcommunity.com/sharedfiles/filedetails/?id=1852323982
 
 Original
 https://steamcommunity.com/sharedfiles/filedetails/?id=1651076103
 
-![Image](https://i.imgur.com/Rs6T6cr.png)
+![Image](https://i.imgur.com/PwoNOj4.png)
 
 
 

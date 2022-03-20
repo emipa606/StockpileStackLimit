@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace StockpileStackLimit
+namespace StockpileStackLimit;
+
+public class ModException : Exception
 {
-    public class ModException : Exception
+    public ModException(string s) : base($"[{Mod.Name}]{s}")
     {
-        public ModException(string s) : base($"[{Mod.Name}]{s}")
-        {
-        }
     }
 }

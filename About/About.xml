@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Stockpile Stack Limit (Continued)</name>
   <packageId>Mlie.StockpileStackLimit</packageId>
@@ -22,13 +22,13 @@
     <li>brrainz.harmony</li>
     <li>Mehni.PickUpAndHaul</li>
   </loadAfter>
-  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+  <description>[img]https://i.imgur.com/buuPQel.png[/img]
 Update of sellophanes mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2015532615
 
 - Added LoadAfter-tag for the Pickup and Haul mod
 
-[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+[img]https://i.imgur.com/pufA0kM.png[/img]
 
 [table]
     [tr]
@@ -37,24 +37,24 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2015532615
     [/tr]
 [/table]
 	
-[img]https://i.imgur.com/NOW7jU1.png[/img]
+[img]https://i.imgur.com/Z4GOv8H.png[/img]
 This is the second iteration of the original mod by ilyaki, modified for better functionality by Darkside, and now updated for 1.1 by myself.
 
 Majority of the credit can go to those two individuals, I just corrected dependencies, and made the necessary .NET updates.
 
-This hasn&apos;t been extensively tested however, it ran with no hiccups in my modded 1.1 so I don&apos;t foresee too many issues occurring. The only caveat to that is while this will work along side LWM&apos;s DeepStorage you should not set stockpile limits for the buildings from that mod.
+This hasn't been extensively tested however, it ran with no hiccups in my modded 1.1 so I don't foresee too many issues occurring. The only caveat to that is while this will work along side LWM's DeepStorage you should not set stockpile limits for the buildings from that mod.
 
-[strike]Additionally, I have not, and will not, test this for 1.0. In theory it should still work but if it doesn&apos;t please just use the 1.0 version that is linked below.[/strike]
+[strike]Additionally, I have not, and will not, test this for 1.0. In theory it should still work but if it doesn't please just use the 1.0 version that is linked below.[/strike]
 
-The below links point to Darkside&apos;s modified version, and the original version of the mod to provide credit where it&apos;s due.
+The below links point to Darkside's modified version, and the original version of the mod to provide credit where it's due.
 
-Darkside&apos;s
+Darkside's
 https://steamcommunity.com/sharedfiles/filedetails/?id=1852323982
 
 Original
 https://steamcommunity.com/sharedfiles/filedetails/?id=1651076103
 
-[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[img]https://i.imgur.com/PwoNOj4.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
@@ -65,4 +65,3 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1651076103
 [/list]
 </description>
 </ModMetaData>
-

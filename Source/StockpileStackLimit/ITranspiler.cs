@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using HarmonyLib;
 
-namespace StockpileStackLimit
+namespace StockpileStackLimit;
+
+internal interface ITranspiler
 {
-    internal interface ITranspiler
-    {
-        IEnumerable<CodeInstruction> TransMethod(TranspilerFactory factory);
-    }
+    IEnumerable<CodeInstruction> TransMethod(TranspilerFactory factory);
 }
