@@ -88,7 +88,7 @@ public class TranspilerFactory
 
     public IEnumerable<CodeInstruction> Transpiler(ILGenerator generator, IEnumerable<CodeInstruction> instr)
     {
-        if (transpilers.Count == 0 || !(transpilers[transpilers.Count - 1] is EndingTranspiler))
+        if (transpilers.Count == 0 || transpilers[transpilers.Count - 1] is not EndingTranspiler)
         {
             transpilers.Add(new EndingTranspiler());
         }

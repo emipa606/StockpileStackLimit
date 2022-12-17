@@ -11,7 +11,7 @@ internal class InsertTranspiler : ITranspiler
 
     public InsertTranspiler(List<CodeInstruction> codes)
     {
-        if (codes == null || codes.Count <= 0)
+        if (codes is not { Count: > 0 })
         {
             throw new Exception();
         }
@@ -47,7 +47,7 @@ internal class InsertTranspiler : ITranspiler
                 continue;
             }
 
-            if (no == 17 || no == 18 || no == 19 || no == -500 || no == -499 || no == -498)
+            if (no is 17 or 18 or 19 or -500 or -499 or -498)
             {
                 code.operand = locals[Convert.ToInt32(code.operand)];
                 yield return code;

@@ -10,12 +10,22 @@ public static class Limits
 
     public static int CalculateStackLimit(Thing t)
     {
+        return CalculateStackLimit(t, out _);
+    }
+
+    public static int CalculateStackLimit(Thing t, out SlotGroup slotGroup)
+    {
+        slotGroup = null;
         if (!t.Spawned)
         {
             return t.def.stackLimit;
         }
 
-        var slotgroup = t.Map.haulDestinationManager.SlotGroupAt(t.Position); //t.GetSlotGroup();
+        ISlotGroup slotGroupCell = t.Map.haulDestinationManager.SlotGroupAt(t.Position);
+        ISlotGroup storageGroup = slotGroupCell?.StorageGroup;
+        var slotgroup = storageGroup ?? slotGroupCell;
+
+        //var slotgroup = t.Map.haulDestinationManager.SlotGroupAt(t.Position); //t.GetSlotGroup();
         if (slotgroup == null)
         {
             return t.def.stackLimit;

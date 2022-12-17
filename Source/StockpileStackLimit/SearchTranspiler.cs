@@ -10,7 +10,7 @@ internal class SearchTranspiler : ITranspiler
 
     public SearchTranspiler(List<CodeInstruction> codes)
     {
-        if (codes == null || codes.Count <= 0)
+        if (codes is not { Count: > 0 })
         {
             throw new Exception();
         }

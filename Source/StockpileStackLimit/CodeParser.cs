@@ -73,7 +73,7 @@ public static class CodeParser
             opcodestr = opcodestr.Replace('.', '_');
             opcode = (OpCode)typeof(OpCodes)
                 .GetField(opcodestr, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.Public)
-                ?.GetValue(null);
+                ?.GetValue(null)!;
         }
 
         if (parts.Length == 1 || opcode.OperandType == OperandType.InlineNone)
@@ -94,7 +94,6 @@ public static class CodeParser
                 var result = MatchMethod.Match(oprandstr);
                 if (!result.Success)
                 {
-                    obj = null;
                     break;
                 }
 
