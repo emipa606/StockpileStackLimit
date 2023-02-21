@@ -40,6 +40,4 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1651076103
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
-
-
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2274678322]Last updated 2022-12-17
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2274678322]Last updated 2023-02-21

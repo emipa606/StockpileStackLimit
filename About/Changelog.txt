@@ -1,5 +1,9 @@
 # Changelog for StockpileStackLimit
 
+1.4.3 - Added translation keys.
+Used DeepL to update translations for ChineseSimplified, French, German, Russian
+
+
 1.4.2 - Sort of works in 1.4 now
 
 

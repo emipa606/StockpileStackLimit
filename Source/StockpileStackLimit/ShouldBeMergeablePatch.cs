@@ -13,20 +13,5 @@ public class ShouldBeMergeablePatch
         {
             __result = !Limits.HasStackLimit(t) && t.stackCount != Limits.CalculateStackLimit(t);
         }
-        //if (t.IsForbidden(Faction.OfPlayer))
-        //{
-        //    __result = false;
-        //}
-        //else if (!Limits.HasStackLimit(t))
-        //{
-        //    __result = false;
-        //}
-        //else if (t.stackCount == Limits.CalculateStackLimit(t))
-        //{
-        //    __result = false;
-        //}
-        //else
-        //    __result = true;
-        //return false;
     }
 }

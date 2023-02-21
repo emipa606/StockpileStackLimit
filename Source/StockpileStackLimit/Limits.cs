@@ -96,14 +96,7 @@ public static class Limits
     {
         _ = settings.owner as ISlotGroupParent;
         //t.Map.listerHaulables.RecalcAllInCells(t.AllSlotCells());
-        if (!limits.ContainsKey(settings))
-        {
-            limits.Add(settings, limit);
-        }
-        else
-        {
-            limits[settings] = limit;
-        }
+        limits[settings] = limit;
     }
 
     public static bool HasLimit(StorageSettings settings)

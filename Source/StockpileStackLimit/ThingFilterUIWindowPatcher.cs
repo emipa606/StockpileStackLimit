@@ -42,7 +42,7 @@ internal class ThingFilterUIWindowPatcher
         var hasLimit = limit != -1;
 
         Widgets.CheckboxLabeled(new Rect(rect.xMin, rect.yMin - 48f - 3f - 32f, rect.width / 2, 24f),
-            "Total stack limit", ref hasLimit);
+            "SSL.TotalLimit".Translate(), ref hasLimit);
 
         if (hasLimit)
         {
