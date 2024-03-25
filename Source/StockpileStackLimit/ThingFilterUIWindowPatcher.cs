@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -35,7 +34,7 @@ internal class ThingFilterUIWindowPatcher
 
         var storeSettingsParent = (IStoreSettingsParent)typeof(ITab_Storage)
             .GetProperty("SelStoreSettingsParent", BindingFlags.NonPublic | BindingFlags.Instance)
-            ?.GetGetMethod(true).Invoke(tab, Array.Empty<object>());
+            ?.GetGetMethod(true).Invoke(tab, []);
         var settings = storeSettingsParent?.GetStoreSettings();
 
         var limit = Limits.GetLimit(settings);

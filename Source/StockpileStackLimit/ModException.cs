@@ -2,9 +2,4 @@
 
 namespace StockpileStackLimit;
 
-public class ModException : Exception
-{
-    public ModException(string s) : base($"[{Mod.Name}]{s}")
-    {
-    }
-}
+public class ModException(string s) : Exception($"[{Mod.Name}]{s}");

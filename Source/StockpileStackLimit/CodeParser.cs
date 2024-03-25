@@ -11,17 +11,17 @@ public static class CodeParser
 {
     public static readonly OpCode AnyOpcode =
         (OpCode)typeof(OpCode).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)[0]
-            .Invoke(new object[] { 256, -257283419 });
+            .Invoke([256, -257283419]);
 
     public static readonly object AnyOprand = "*";
 
     public static readonly OpCode LocalvarOpcode =
         (OpCode)typeof(OpCode).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)[0]
-            .Invoke(new object[] { 257, 279317166 });
+            .Invoke([257, 279317166]);
 
     public static readonly OpCode LabelOpcode =
         (OpCode)typeof(OpCode).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)[0]
-            .Invoke(new object[] { 258, 279317166 });
+            .Invoke([258, 279317166]);
 
     public static readonly Regex MatchMethod = new Regex(@"^(.*?)::?(.*?)(?:\((.*?)\))?$");
 
@@ -54,7 +54,7 @@ public static class CodeParser
             throw new Exception("String to Parse is null or empty");
         }
 
-        var parts = str.Split(new[] { ' ' }, 2);
+        var parts = str.Split([' '], 2);
         var opcodestr = parts[0];
         var opcode = AnyOpcode;
         if (opcodestr != "*")
@@ -122,7 +122,7 @@ public static class CodeParser
 
                 break;
             case OperandType.InlineField:
-                parts = oprandstr.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                parts = oprandstr.Split([':'], StringSplitOptions.RemoveEmptyEntries);
                 obj = AccessTools.Field(String2Type(parts[0]), parts[1]);
                 break;
             case OperandType.InlineString:
@@ -159,7 +159,7 @@ public static class CodeParser
 
     public static List<CodeInstruction> ParseMutiple(string str)
     {
-        var codes = str.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+        var codes = str.Split([';'], StringSplitOptions.RemoveEmptyEntries);
         var result = new List<CodeInstruction>(codes.Length);
         foreach (var s in codes)
         {

@@ -15,7 +15,7 @@ public class TranspilerFactory
 
     public TranspilerFactory()
     {
-        transpilers = new List<ITranspiler>();
+        transpilers = [];
         GetTranspiler = Transpiler;
     }
 
@@ -95,8 +95,8 @@ public class TranspilerFactory
 
         Generator = generator;
         CodeEnumerator = instr.GetEnumerator();
-        Locals = new List<LocalBuilder>();
-        Labels = new List<Label>();
+        Locals = [];
+        Labels = [];
         foreach (var t in transpilers)
         {
             foreach (var code in t.TransMethod(this))

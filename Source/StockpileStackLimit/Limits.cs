@@ -89,7 +89,7 @@ public static class Limits
 
     public static int GetLimit(StorageSettings settings)
     {
-        return !limits.ContainsKey(settings) ? -1 : limits[settings];
+        return limits.GetValueOrDefault(settings, -1);
     }
 
     public static void SetLimit(StorageSettings settings, int limit)
