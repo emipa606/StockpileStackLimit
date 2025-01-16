@@ -2,10 +2,10 @@
 using RimWorld;
 using Verse;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
-[HarmonyPatch(typeof(StoreUtility), "TryFindBestBetterStoreCellFor")]
-internal class FindBestBetterStoreCellPatcher
+[HarmonyPatch(typeof(StoreUtility), nameof(StoreUtility.TryFindBestBetterStoreCellFor))]
+internal class StoreUtility_TryFindBestBetterStoreCellFor
 {
     public static void Prefix(Thing t, ref StoragePriority currentPriority)
     {

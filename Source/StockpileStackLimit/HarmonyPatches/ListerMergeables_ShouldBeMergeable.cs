@@ -2,12 +2,12 @@
 using RimWorld;
 using Verse;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
 [HarmonyPatch(typeof(ListerMergeables), "ShouldBeMergeable")]
-public class ShouldBeMergeablePatch
+public class ListerMergeables_ShouldBeMergeable
 {
-    private static void Postfix(Thing t, ref bool __result)
+    public static void Postfix(Thing t, ref bool __result)
     {
         if (__result)
         {

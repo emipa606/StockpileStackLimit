@@ -4,10 +4,10 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
-[HarmonyPatch(typeof(ThingFilterUI), "DoThingFilterConfigWindow")]
-internal class ThingFilterUIWindowPatcher
+[HarmonyPatch(typeof(ThingFilterUI), nameof(ThingFilterUI.DoThingFilterConfigWindow))]
+internal class ThingFilterUI_DoThingFilterConfigWindow
 {
     private const int max = 9999999;
     private static string buffer = "";
@@ -15,7 +15,7 @@ internal class ThingFilterUIWindowPatcher
 
     public static void Prefix(ref Rect rect)
     {
-        var tab = ITab_StorageFillTabsPatcher.currentTab;
+        var tab = ITab_Storage_FillTab.currentTab;
         if (tab == null)
         {
             return;
@@ -26,7 +26,7 @@ internal class ThingFilterUIWindowPatcher
 
     public static void Postfix(ref Rect rect)
     {
-        var tab = ITab_StorageFillTabsPatcher.currentTab;
+        var tab = ITab_Storage_FillTab.currentTab;
         if (tab == null)
         {
             return;

@@ -52,11 +52,21 @@ public static class Limits
         var slotgroup = map.haulDestinationManager.SlotGroupAt(cell);
         if (slotgroup == null)
         {
-            return 0;
+            return 99999;
         }
 
         var limit = GetLimit(slotgroup.Settings);
-        return limit > 0 ? limit : 0;
+        if (limit <= 0)
+        {
+            return 99999;
+        }
+
+        if (!cell.TryGetFirstThing<Thing>(map, out var thing))
+        {
+            return limit;
+        }
+
+        return limit - thing.stackCount;
     }
 
     public static bool HasStackLimit(Thing t)

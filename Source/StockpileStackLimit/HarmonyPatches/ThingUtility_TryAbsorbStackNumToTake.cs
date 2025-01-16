@@ -2,10 +2,10 @@
 using UnityEngine;
 using Verse;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
 //[HarmonyPatch(typeof(ThingUtility), "TryAbsorbStackNumToTake")]
-public static class TryAbsorbStackNumToTakePatch
+public static class ThingUtility_TryAbsorbStackNumToTake
 {
     [HarmonyPriority(Priority.Low)]
     public static bool Prefix(ref int __result, Thing thing, Thing other, bool respectStackLimit)

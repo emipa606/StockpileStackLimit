@@ -1,10 +1,10 @@
 ﻿using HarmonyLib;
 using RimWorld;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
 [HarmonyPatch(typeof(ITab_Storage), "FillTab")]
-internal class ITab_StorageFillTabsPatcher
+internal class ITab_Storage_FillTab
 {
     public static ITab_Storage currentTab;
 

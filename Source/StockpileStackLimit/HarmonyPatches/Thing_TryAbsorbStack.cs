@@ -3,10 +3,10 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
 [HarmonyPatch(typeof(Thing), nameof(Thing.TryAbsorbStack))]
-internal class ThingPatch
+internal class Thing_TryAbsorbStack
 {
     public static bool Prefix(Thing __instance, Thing other, bool respectStackLimit, ref bool __result)
     {

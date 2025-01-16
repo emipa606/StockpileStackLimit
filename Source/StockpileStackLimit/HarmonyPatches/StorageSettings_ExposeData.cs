@@ -2,10 +2,10 @@
 using RimWorld;
 using Verse;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
-[HarmonyPatch(typeof(StorageSettings), "ExposeData")]
-internal class StorageSettingsExposeDataPatcher
+[HarmonyPatch(typeof(StorageSettings), nameof(StorageSettings.ExposeData))]
+internal class StorageSettings_ExposeData
 {
     public static void Postfix(StorageSettings __instance)
     {

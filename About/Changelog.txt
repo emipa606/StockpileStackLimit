@@ -1,5 +1,8 @@
 # Changelog for StockpileStackLimit
 
+1.5.1 - Should fix the issue of endless moving around items between stockpiles
+
+
 1.5.0 - Mod updated for 1.5 and passed autotests
 
 

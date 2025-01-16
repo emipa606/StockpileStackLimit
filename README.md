@@ -1,4 +1,4 @@
-# StockpileStackLimit
+# [Stockpile Stack Limit (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2274678322)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
@@ -8,7 +8,6 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2015532615
 - Added LoadAfter-tag for the Pickup and Haul mod
 
 ![Image](https://i.imgur.com/pufA0kM.png)
-
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
 
@@ -18,7 +17,7 @@ Majority of the credit can go to those two individuals, I just corrected depende
 
 This hasn't been extensively tested however, it ran with no hiccups in my modded 1.1 so I don't foresee too many issues occurring. The only caveat to that is while this will work along side LWM's DeepStorage you should not set stockpile limits for the buildings from that mod.
 
-[strike]Additionally, I have not, and will not, test this for 1.0. In theory it should still work but if it doesn't please just use the 1.0 version that is linked below.[/strike]
+~~Additionally, I have not, and will not, test this for 1.0. In theory it should still work but if it doesn't please just use the 1.0 version that is linked below.~~
 
 The below links point to Darkside's modified version, and the original version of the mod to provide credit where it's due.
 
@@ -34,13 +33,12 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1651076103
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib or the standalone https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
-
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2274678322]![Image](https://img.shields.io/github/v/release/emipa606/StockpileStackLimit?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
-
+[![Image](https://img.shields.io/github/v/release/emipa606/StockpileStackLimit?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2274678322) | tags:  efficiency

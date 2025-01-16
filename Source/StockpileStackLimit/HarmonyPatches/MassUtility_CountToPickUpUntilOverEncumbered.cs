@@ -3,10 +3,10 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
-[HarmonyPatch(typeof(MassUtility), "CountToPickUpUntilOverEncumbered")]
-internal class MassUtilityPatch
+[HarmonyPatch(typeof(MassUtility), nameof(MassUtility.CountToPickUpUntilOverEncumbered))]
+internal class MassUtility_CountToPickUpUntilOverEncumbered
 {
     private static void Postfix(Thing thing, ref int __result)
     {

@@ -1,22 +1,31 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
-[HarmonyPatch(typeof(HaulAIUtility), "HaulToCellStorageJob")]
-public static class HaulToCellStorageJobPatch
+[HarmonyPatch(typeof(HaulAIUtility), nameof(HaulAIUtility.HaulToCellStorageJob))]
+public static class HaulAIUtility_HaulToCellStorageJob
 {
     public static bool Prefix(Pawn p, Thing t, IntVec3 storeCell, ref Job __result)
     {
+        var targetLimit = Limits.CalculateStackLimit(p.Map, storeCell);
+        if (targetLimit == 0)
+        {
+            __result = null;
+            return false;
+        }
+
         var limit = Limits.CalculateStackLimit(t, out var slotGroup);
         Job job;
+        var movable = Mathf.Clamp(t.stackCount - limit, 0, targetLimit);
         if (t.stackCount > limit)
         {
             job = new Job(JobDefOf.HaulToCell, t, storeCell)
             {
-                count = t.stackCount - limit,
+                count = movable,
                 haulOpportunisticDuplicates = true,
                 haulMode = HaulMode.ToCellStorage
             };

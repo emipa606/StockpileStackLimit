@@ -1,10 +1,10 @@
 ﻿using HarmonyLib;
 using RimWorld;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
-[HarmonyPatch(typeof(StorageSettingsClipboard), "Copy")]
-public static class CopyPatch
+[HarmonyPatch(typeof(StorageSettingsClipboard), nameof(StorageSettingsClipboard.Copy))]
+public static class StorageSettingsClipboard_Copy
 {
     public static int clipboardLimit = -1;
 

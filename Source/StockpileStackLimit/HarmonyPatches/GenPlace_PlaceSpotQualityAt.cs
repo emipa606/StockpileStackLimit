@@ -1,8 +1,8 @@
 ﻿using Verse;
 
-namespace StockpileStackLimit;
+namespace StockpileStackLimit.HarmonyPatches;
 
-internal static class PlaceSpotQualityAtPatch
+internal static class GenPlace_PlaceSpotQualityAt
 {
     public static bool Prefix(IntVec3 c, Map map, Thing thing, ref byte __result)
     {
