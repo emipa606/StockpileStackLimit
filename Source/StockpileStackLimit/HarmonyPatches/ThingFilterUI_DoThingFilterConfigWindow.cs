@@ -15,7 +15,7 @@ internal class ThingFilterUI_DoThingFilterConfigWindow
 
     public static void Prefix(ref Rect rect)
     {
-        var tab = ITab_Storage_FillTab.currentTab;
+        var tab = ITab_Storage_FillTab.CurrentTab;
         if (tab == null)
         {
             return;
@@ -26,7 +26,7 @@ internal class ThingFilterUI_DoThingFilterConfigWindow
 
     public static void Postfix(ref Rect rect)
     {
-        var tab = ITab_Storage_FillTab.currentTab;
+        var tab = ITab_Storage_FillTab.CurrentTab;
         if (tab == null)
         {
             return;

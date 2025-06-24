@@ -26,18 +26,8 @@ public static class Mod
 #endif
     }
 
-    public static void Message(string s)
+    private static void Message(string s)
     {
         Log.Message($"[{Name}] {s}");
-    }
-
-    public static void Warning(string s)
-    {
-        Log.Warning($"[{Name}] {s}");
-    }
-
-    public static void Error(string s)
-    {
-        Log.Error($"[{Name}] {s}");
     }
 }

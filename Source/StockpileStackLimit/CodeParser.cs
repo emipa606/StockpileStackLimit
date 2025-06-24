@@ -9,11 +9,11 @@ namespace StockpileStackLimit;
 
 public static class CodeParser
 {
-    public static readonly OpCode AnyOpcode =
+    private static readonly OpCode anyOpcode =
         (OpCode)typeof(OpCode).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)[0]
             .Invoke([256, -257283419]);
 
-    public static readonly object AnyOprand = "*";
+    private static readonly object anyOperand = "*";
 
     public static readonly OpCode LocalvarOpcode =
         (OpCode)typeof(OpCode).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)[0]
@@ -23,9 +23,9 @@ public static class CodeParser
         (OpCode)typeof(OpCode).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)[0]
             .Invoke([258, 279317166]);
 
-    public static readonly Regex MatchMethod = new Regex(@"^(.*?)::?(.*?)(?:\((.*?)\))?$");
+    private static readonly Regex matchMethod = new(@"^(.*?)::?(.*?)(?:\((.*?)\))?$");
 
-    public static readonly Dictionary<string, Type> KeywordTypes = new Dictionary<string, Type>
+    private static readonly Dictionary<string, Type> keywordTypes = new()
     {
         { "bool", typeof(bool) }, { "byte", typeof(byte) }, { "char", typeof(char) },
         {
@@ -36,18 +36,15 @@ public static class CodeParser
         { "ulong", typeof(ulong) }, { "ushort", typeof(ushort) }
     };
 
-    public static Type String2Type(string str)
+    private static Type String2Type(string str)
     {
-        _ = KeywordTypes.TryGetValue(str, out var t);
-        if (t == null)
-        {
-            t = AccessTools.TypeByName(str);
-        }
+        _ = keywordTypes.TryGetValue(str, out var t);
+        t ??= AccessTools.TypeByName(str);
 
         return t;
     }
 
-    public static CodeInstruction Parse(string str)
+    private static CodeInstruction parse(string str)
     {
         if (string.IsNullOrEmpty(str))
         {
@@ -55,25 +52,24 @@ public static class CodeParser
         }
 
         var parts = str.Split([' '], 2);
-        var opcodestr = parts[0];
-        var opcode = AnyOpcode;
-        if (opcodestr != "*")
+        var opCodeStr = parts[0];
+        var opcode = anyOpcode;
+        if (opCodeStr != "*")
         {
-            opcodestr = opcodestr.ToLower();
-            if (opcodestr == "localvar")
+            opCodeStr = opCodeStr.ToLower();
+            switch (opCodeStr)
             {
-                return new CodeInstruction(LocalvarOpcode, String2Type(parts[1]));
+                case "localvar":
+                    return new CodeInstruction(LocalvarOpcode, String2Type(parts[1]));
+                case "label":
+                    return new CodeInstruction(LabelOpcode, Convert.ToInt32(parts[1]));
+                default:
+                    opCodeStr = opCodeStr.Replace('.', '_');
+                    opcode = (OpCode)typeof(OpCodes)
+                        .GetField(opCodeStr, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.Public)
+                        ?.GetValue(null)!;
+                    break;
             }
-
-            if (opcodestr == "label")
-            {
-                return new CodeInstruction(LabelOpcode, Convert.ToInt32(parts[1]));
-            }
-
-            opcodestr = opcodestr.Replace('.', '_');
-            opcode = (OpCode)typeof(OpCodes)
-                .GetField(opcodestr, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.Public)
-                ?.GetValue(null)!;
         }
 
         if (parts.Length == 1 || opcode.OperandType == OperandType.InlineNone)
@@ -81,17 +77,17 @@ public static class CodeParser
             return new CodeInstruction(opcode);
         }
 
-        var oprandstr = parts[1];
-        if (oprandstr == "*")
+        var opRandStr = parts[1];
+        if (opRandStr == "*")
         {
-            return new CodeInstruction(opcode, AnyOprand);
+            return new CodeInstruction(opcode, anyOperand);
         }
 
         object obj = null;
         switch (opcode.OperandType)
         {
             case OperandType.InlineMethod:
-                var result = MatchMethod.Match(oprandstr);
+                var result = matchMethod.Match(opRandStr);
                 if (!result.Success)
                 {
                     break;
@@ -99,20 +95,17 @@ public static class CodeParser
 
                 var type = String2Type(result.Groups[1].Value);
                 var method = result.Groups[2].Value;
-                var argstr = result.Groups[3].Value;
+                var argStr = result.Groups[3].Value;
                 Type[] args = null;
-                if (argstr != "")
+                if (argStr != "")
                 {
-                    var t = argstr.Split(',');
+                    var t = argStr.Split(',');
                     args = new Type[t.Length];
                     for (var i = 0; i < t.Length; i++)
                     {
                         var s = t[i].Trim();
-                        _ = KeywordTypes.TryGetValue(s, out args[i]);
-                        if (args[i] == null)
-                        {
-                            args[i] = String2Type(s);
-                        }
+                        _ = keywordTypes.TryGetValue(s, out args[i]);
+                        args[i] ??= String2Type(s);
                     }
                 }
 
@@ -122,33 +115,33 @@ public static class CodeParser
 
                 break;
             case OperandType.InlineField:
-                parts = oprandstr.Split([':'], StringSplitOptions.RemoveEmptyEntries);
+                parts = opRandStr.Split([':'], StringSplitOptions.RemoveEmptyEntries);
                 obj = AccessTools.Field(String2Type(parts[0]), parts[1]);
                 break;
             case OperandType.InlineString:
-                obj = oprandstr;
+                obj = opRandStr;
                 break;
             case OperandType.InlineType:
-                obj = String2Type(oprandstr);
+                obj = String2Type(opRandStr);
                 break;
             case OperandType.InlineI:
             case OperandType.InlineBrTarget:
             case OperandType.ShortInlineBrTarget:
-                obj = Convert.ToInt32(oprandstr);
+                obj = Convert.ToInt32(opRandStr);
                 break;
             case OperandType.InlineVar:
             case OperandType.ShortInlineI:
-                obj = Convert.ToInt16(oprandstr);
+                obj = Convert.ToInt16(opRandStr);
                 break;
             case OperandType.ShortInlineVar:
             case OperandType.InlineI8:
-                obj = Convert.ToByte(oprandstr);
+                obj = Convert.ToByte(opRandStr);
                 break;
             case OperandType.InlineR:
-                obj = Convert.ToDouble(oprandstr);
+                obj = Convert.ToDouble(opRandStr);
                 break;
             case OperandType.ShortInlineR:
-                obj = Convert.ToSingle(oprandstr);
+                obj = Convert.ToSingle(opRandStr);
                 break;
         }
 
@@ -157,23 +150,23 @@ public static class CodeParser
             : new CodeInstruction(opcode, obj);
     }
 
-    public static List<CodeInstruction> ParseMutiple(string str)
+    public static List<CodeInstruction> ParseMultiple(string str)
     {
         var codes = str.Split([';'], StringSplitOptions.RemoveEmptyEntries);
         var result = new List<CodeInstruction>(codes.Length);
         foreach (var s in codes)
         {
-            result.Add(Parse(s));
+            result.Add(parse(s));
         }
 
         return result;
     }
 
-    public static bool IsMatchWith(this CodeInstruction CodeWithMatchOption, CodeInstruction instr)
+    public static bool IsMatchWith(this CodeInstruction codeWithMatchOption, CodeInstruction instr)
     {
-        var result = AnyOpcode == CodeWithMatchOption.opcode || CodeWithMatchOption.opcode == instr.opcode;
-        result &= AnyOprand == CodeWithMatchOption.operand ||
-                  (CodeWithMatchOption.operand?.Equals(instr.operand) ?? null == instr.operand);
+        var result = anyOpcode == codeWithMatchOption.opcode || codeWithMatchOption.opcode == instr.opcode;
+        result &= anyOperand == codeWithMatchOption.operand ||
+                  (codeWithMatchOption.operand?.Equals(instr.operand) ?? null == instr.operand);
         return result;
     }
 }

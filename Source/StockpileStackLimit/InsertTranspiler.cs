@@ -64,8 +64,6 @@ internal class InsertTranspiler : ITranspiler
                 }
 
                 code.operand = labels[index];
-                yield return code;
-                continue;
             }
 
             yield return code;

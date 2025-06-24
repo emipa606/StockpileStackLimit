@@ -6,7 +6,7 @@ namespace StockpileStackLimit;
 
 public static class Limits
 {
-    private static readonly Dictionary<StorageSettings, int> limits = new Dictionary<StorageSettings, int>();
+    private static readonly Dictionary<StorageSettings, int> limits = new();
 
     public static int CalculateStackLimit(Thing t)
     {
@@ -35,27 +35,27 @@ public static class Limits
         return limit > 0 ? limit : t.def.stackLimit;
     }
 
-    public static int CalculateStackLimit(SlotGroup slotgroup)
+    public static int CalculateStackLimit(SlotGroup slotGroup)
     {
-        if (slotgroup == null)
+        if (slotGroup == null)
         {
             return 99999;
         }
 
-        var setting = slotgroup.Settings;
+        var setting = slotGroup.Settings;
         var limit = GetLimit(setting);
         return limit > 0 ? limit : 99999;
     }
 
     public static int CalculateStackLimit(Map map, IntVec3 cell)
     {
-        var slotgroup = map.haulDestinationManager.SlotGroupAt(cell);
-        if (slotgroup == null)
+        var slotGroup = map.haulDestinationManager.SlotGroupAt(cell);
+        if (slotGroup == null)
         {
             return 99999;
         }
 
-        var limit = GetLimit(slotgroup.Settings);
+        var limit = GetLimit(slotGroup.Settings);
         if (limit <= 0)
         {
             return 99999;
@@ -76,25 +76,14 @@ public static class Limits
             return false;
         }
 
-        var slotgroup = t.Map.haulDestinationManager.SlotGroupAt(t.Position); //t.GetSlotGroup();
-        if (slotgroup == null)
+        var slotGroup = t.Map.haulDestinationManager.SlotGroupAt(t.Position); //t.GetSlotGroup();
+        if (slotGroup == null)
         {
             return false;
         }
 
-        var setting = slotgroup.Settings;
-        return HasLimit(setting);
-    }
-
-    public static bool HasStackLimit(SlotGroup slotgroup)
-    {
-        if (slotgroup == null)
-        {
-            return false;
-        }
-
-        var setting = slotgroup.Settings;
-        return HasLimit(setting);
+        var setting = slotGroup.Settings;
+        return hasLimit(setting);
     }
 
     public static int GetLimit(StorageSettings settings)
@@ -109,7 +98,7 @@ public static class Limits
         limits[settings] = limit;
     }
 
-    public static bool HasLimit(StorageSettings settings)
+    private static bool hasLimit(StorageSettings settings)
     {
         return limits.ContainsKey(settings) && limits[settings] > 0;
     }

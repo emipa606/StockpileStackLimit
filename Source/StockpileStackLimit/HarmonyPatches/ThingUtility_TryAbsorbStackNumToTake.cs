@@ -4,7 +4,6 @@ using Verse;
 
 namespace StockpileStackLimit.HarmonyPatches;
 
-//[HarmonyPatch(typeof(ThingUtility), "TryAbsorbStackNumToTake")]
 public static class ThingUtility_TryAbsorbStackNumToTake
 {
     [HarmonyPriority(Priority.Low)]

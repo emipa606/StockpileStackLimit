@@ -6,8 +6,8 @@ namespace StockpileStackLimit;
 
 public class TranspilerFactory
 {
-    private readonly TranspilerDelegate GetTranspiler;
-    private readonly List<ITranspiler> transpilers;
+    private readonly TranspilerDelegate getTranspiler;
+    private readonly List<ITranspiler> transpiler;
     internal IEnumerator<CodeInstruction> CodeEnumerator;
     internal ILGenerator Generator;
     internal List<Label> Labels;
@@ -15,13 +15,13 @@ public class TranspilerFactory
 
     public TranspilerFactory()
     {
-        transpilers = [];
-        GetTranspiler = Transpiler;
+        transpiler = [];
+        getTranspiler = Transpiler;
     }
 
     public TranspilerFactory Search(string str)
     {
-        transpilers.Add(new SearchTranspiler(CodeParser.ParseMutiple(str)));
+        transpiler.Add(new SearchTranspiler(CodeParser.ParseMultiple(str)));
         return this;
     }
 
@@ -29,7 +29,7 @@ public class TranspilerFactory
     {
         for (var i = 0; i < num; i++)
         {
-            transpilers.Add(new SearchTranspiler(CodeParser.ParseMutiple(str)));
+            transpiler.Add(new SearchTranspiler(CodeParser.ParseMultiple(str)));
         }
 
         return this;
@@ -37,8 +37,8 @@ public class TranspilerFactory
 
     public TranspilerFactory Replace(string from, string to)
     {
-        transpilers.Add(new SearchDeleteTranspiler(CodeParser.ParseMutiple(from)));
-        transpilers.Add(new InsertTranspiler(CodeParser.ParseMutiple(to)));
+        transpiler.Add(new SearchDeleteTranspiler(CodeParser.ParseMultiple(from)));
+        transpiler.Add(new InsertTranspiler(CodeParser.ParseMultiple(to)));
         return this;
     }
 
@@ -46,8 +46,8 @@ public class TranspilerFactory
     {
         for (var i = 0; i < num; i++)
         {
-            transpilers.Add(new SearchDeleteTranspiler(CodeParser.ParseMutiple(from)));
-            transpilers.Add(new InsertTranspiler(CodeParser.ParseMutiple(to)));
+            transpiler.Add(new SearchDeleteTranspiler(CodeParser.ParseMultiple(from)));
+            transpiler.Add(new InsertTranspiler(CodeParser.ParseMultiple(to)));
         }
 
         return this;
@@ -55,13 +55,13 @@ public class TranspilerFactory
 
     public TranspilerFactory Insert(string str)
     {
-        transpilers.Add(new InsertTranspiler(CodeParser.ParseMutiple(str)));
+        transpiler.Add(new InsertTranspiler(CodeParser.ParseMultiple(str)));
         return this;
     }
 
     public TranspilerFactory Delete(string str)
     {
-        transpilers.Add(new SearchDeleteTranspiler(CodeParser.ParseMutiple(str)));
+        transpiler.Add(new SearchDeleteTranspiler(CodeParser.ParseMultiple(str)));
         return this;
     }
 
@@ -69,7 +69,7 @@ public class TranspilerFactory
     {
         for (var i = 0; i < num; i++)
         {
-            transpilers.Add(new SearchDeleteTranspiler(CodeParser.ParseMutiple(str)));
+            transpiler.Add(new SearchDeleteTranspiler(CodeParser.ParseMultiple(str)));
         }
 
         return this;
@@ -77,27 +77,27 @@ public class TranspilerFactory
 
     public TranspilerFactory Delete(int num)
     {
-        transpilers.Add(new SkipTranspiler(num));
+        transpiler.Add(new SkipTranspiler(num));
         return this;
     }
 
     public HarmonyMethod GetTranspilerMethod()
     {
-        return new HarmonyMethod(GetTranspiler.Method);
+        return new HarmonyMethod(getTranspiler.Method);
     }
 
-    public IEnumerable<CodeInstruction> Transpiler(ILGenerator generator, IEnumerable<CodeInstruction> instr)
+    private IEnumerable<CodeInstruction> Transpiler(ILGenerator generator, IEnumerable<CodeInstruction> instr)
     {
-        if (transpilers.Count == 0 || transpilers[transpilers.Count - 1] is not EndingTranspiler)
+        if (transpiler.Count == 0 || transpiler[^1] is not EndingTranspiler)
         {
-            transpilers.Add(new EndingTranspiler());
+            transpiler.Add(new EndingTranspiler());
         }
 
         Generator = generator;
         CodeEnumerator = instr.GetEnumerator();
         Locals = [];
         Labels = [];
-        foreach (var t in transpilers)
+        foreach (var t in transpiler)
         {
             foreach (var code in t.TransMethod(this))
             {

@@ -6,15 +6,15 @@ namespace StockpileStackLimit.HarmonyPatches;
 [HarmonyPatch(typeof(ITab_Storage), "FillTab")]
 internal class ITab_Storage_FillTab
 {
-    public static ITab_Storage currentTab;
+    public static ITab_Storage CurrentTab;
 
     public static void Prefix(ITab_Storage __instance)
     {
-        currentTab = __instance;
+        CurrentTab = __instance;
     }
 
     public static void Postfix()
     {
-        currentTab = null;
+        CurrentTab = null;
     }
 }
