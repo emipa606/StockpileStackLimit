@@ -25,7 +25,6 @@ public static class Limits
         ISlotGroup storageGroup = slotGroupCell?.StorageGroup;
         var slotgroup = storageGroup ?? slotGroupCell;
 
-        //var slotgroup = t.Map.haulDestinationManager.SlotGroupAt(t.Position); //t.GetSlotGroup();
         if (slotgroup == null)
         {
             return t.def.stackLimit;

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -37,14 +38,22 @@ internal class ThingFilterUI_DoThingFilterConfigWindow
             ?.GetGetMethod(true).Invoke(tab, []);
         var settings = storeSettingsParent?.GetStoreSettings();
 
+
         var limit = Limits.GetLimit(settings);
         var hasLimit = limit != -1;
-
+        var wasLimit = hasLimit;
         Widgets.CheckboxLabeled(new Rect(rect.xMin, rect.yMin - 48f - 3f - 32f, rect.width / 2, 24f),
             "SSL.TotalLimit".Translate(), ref hasLimit);
 
         if (hasLimit)
         {
+            if (!wasLimit && limit == -1)
+            {
+                // If the limit was not set before, we set it to the default stack limit
+                limit = storeSettingsParent?.GetStoreSettings().filter.AllowedThingDefs.FirstOrDefault()?.stackLimit ??
+                        75;
+            }
+
             if (oldSettings != settings)
             {
                 buffer = limit.ToString();

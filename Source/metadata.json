@@ -5,5 +5,10 @@
   "PreviewVersion": "1.6",
   "SocialImageSet": true,
   "SearchTags": " efficiency",
-  "LastXmlCleaning": "2025-06-24T22:13:30.9189536+02:00"
+  "LastXmlCleaning": "2025-07-01T22:10:41.0567786+02:00",
+  "Patches": false,
+  "Defs": false,
+  "Assemblies": true,
+  "LinesOfCode": 33324.0,
+  "LinesOfXML": 0
 }
