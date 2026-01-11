@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<TabulaRasa.UpdateDef Abstract="true" Name="StockpileStackLimit_UpdateInfoBase">
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2274678322</linkUrl>
+		<banner>UpdateInfo/StockpileStackLimit</banner>
+	</TabulaRasa.UpdateDef>
+	<TabulaRasa.UpdateDef ParentName="StockpileStackLimit_UpdateInfoBase" MayRequire="neronix17.toolbox">
+		<defName>StockpileStackLimit_1_6_1</defName>
+		<date>2026/1/11</date>
+		<content>This mod will not be further updated.</content>
+	</TabulaRasa.UpdateDef>
+</Defs>
+

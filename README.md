@@ -1,15 +1,17 @@
-# [Stockpile Stack Limit (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2274678322)
+# [[Abandoned] Stockpile Stack Limit (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2274678322)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of sellophanes mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2015532615
 
 - Added LoadAfter-tag for the Pickup and Haul mod
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Abandoned.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
+
+Allows you to set a limit on the total item stack per stockpile.
 
 This is the second iteration of the original mod by ilyaki, modified for better functionality by Darkside, and now updated for 1.1 by myself.
 
@@ -27,13 +29,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1852323982
 Original
 https://steamcommunity.com/sharedfiles/filedetails/?id=1651076103
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -41,4 +43,4 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1651076103
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/StockpileStackLimit?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2274678322) | tags:  efficiency
+[![Image](https://img.shields.io/github/v/release/emipa606/StockpileStackLimit?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2274678322) | tags: efficiency
